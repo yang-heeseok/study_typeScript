@@ -1,0 +1,63 @@
+
+npm init -y
+npm install webpack webpack-cli --save-dev
+
+npm install typescript ts-loader --save-dev
+
+[make a file]
+tsconfig.json 
+{
+	"compilerOptions": {
+		"outDir": "./dist",
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"module": "ES6",
+		"target": "ES5",
+		"allowJs": true
+	}
+}
+
+
+[make a file]
+webpack.config.js
+const path = require("path");
+module.exports = {
+    mode: "development",
+    entry: "./src/index.ts",
+    devtool: "inline-source-map",
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: "ts-loader",
+                exclued: /node_modules/,
+            },
+        ],
+    },
+    resolve: {
+        extension: [".tsx", ".ts", ".js"],
+    },
+    output: {
+        filename: "bundle.js",
+        path: path.resolve(__dirname, "dist"),
+    },
+}
+
+
+md src
+index.ts
+
+./dist/index.html
+
+
+index.html 에 bundle.js script 태그에 추가
+<script src="bundle.js" defer></script>
+
+live serve extension 추가
+
+
+package.json script 추가
+"bundle": "webpack",
+"watch": "webpack --watch",
+"start": "npm run bundle && npm run watch"
+
