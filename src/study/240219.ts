@@ -64,6 +64,12 @@ function study_implements() {
 
 // 확장
 function study_extends() {
+	interface Car {
+		color: string;
+		wheels: number;
+		start(): void;
+	}
+
 	interface Toy {
 		name: string;
 	}
